@@ -12,6 +12,8 @@ import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDateTime;
+
 @Component
 @RequiredArgsConstructor
 @Slf4j
@@ -26,8 +28,8 @@ public class EmailListener {
     public void receiveEmail(@Payload EmailRequest request) throws JsonProcessingException {
         var email = request.toEntity ( request );
         email.setStatusEmail( StatusEmail.SENT );
+        email.setSendDateTime( LocalDateTime.now() );
         emailRepository.save ( email );
-        var response = email.toResponse ( email );
         emailService.SendEmail();
         log.info ( "Email: {}", objectMapper.writeValueAsString ( request ) );
     }
