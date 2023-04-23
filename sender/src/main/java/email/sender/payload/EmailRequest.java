@@ -1,7 +1,6 @@
 package email.sender.payload;
 
 import email.sender.model.Email;
-import jakarta.persistence.Column;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import org.springframework.beans.BeanUtils;

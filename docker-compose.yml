@@ -2,15 +2,26 @@ version: '3.9'
 services:
 
   db:
+    image: mongo
+    container_name: mail_rabbit
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_DATABASE=email
+      - MONGO_INITDB_ROOT_PASSWORD=123456
+    ports:
+      - 27017:27017
+      - 28017:28017
+      
+  postgres:
     image: postgres:alpine
     container_name: db
     environment:
       - POSTGRES_DB=email-db
-      - POSTGRES_DB=sender-db
       - POSTGRES_USER=admin
       - POSTGRES_PASSWORD=123456
     ports:
       - 5432:5432
+ 
   
 
   rabbit:
@@ -23,3 +34,5 @@ services:
 networks:
   default:
     name: local
+    
+    

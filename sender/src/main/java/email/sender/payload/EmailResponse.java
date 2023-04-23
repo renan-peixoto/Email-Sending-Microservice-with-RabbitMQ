@@ -2,20 +2,19 @@ package email.sender.payload;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.mchange.v2.beans.BeansUtils;
 import email.sender.enums.StatusEmail;
 
-import email.sender.model.Email;
+
 import lombok.Data;
-import org.springframework.beans.BeanUtils;
+
 
 import java.time.LocalDateTime;
-import java.util.UUID;
+
 
 @Data
 public class EmailResponse {
     @JsonProperty("email_id")
-    private UUID id;
+    private String id;
 
     @JsonProperty("owner_ref")
     private String ownerRef;
