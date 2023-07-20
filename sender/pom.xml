@@ -58,6 +58,7 @@
 	</dependencies>
 
 	<build>
+		<finalName>spring-boot-sender-api</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
@@ -70,6 +71,13 @@
 						</exclude>
 					</excludes>
 				</configuration>
+				<executions>
+					<execution>
+						<configuration>
+							<mainClass>email.sender.EmailSenderApplication</mainClass>
+						</configuration>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>

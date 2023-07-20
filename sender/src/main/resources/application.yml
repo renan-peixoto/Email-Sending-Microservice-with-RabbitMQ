@@ -1,6 +1,6 @@
 
 server:
-  port: 8081
+  port: ${PORT:8081}
 
 
 spring:
@@ -10,7 +10,7 @@ spring:
 
   data:
     mongodb:
-      uri: mongodb://admin:123456@localhost/email-db?authSource=admin
+      uri: ${MONGO_DB_URL:mongodb://admin:123456@localhost/email-db?authSource=admin}
 
   mail:
     host: sandbox.smtp.mailtrap.io
@@ -24,10 +24,10 @@ spring:
           starttls: true
 
   rabbitmq:
-    host: localhost
-    port: 5672
-    username: guest
-    password: guest
+    host: ${RABBIT_MQ_HOST:localhost}
+    port: ${RABBIT_MQ_PORT:5672}
+    username: ${RABBIT_MQ_USER:guest}
+    password: ${RABBIT_MQ_PASSWORD:guest}
 
 logging:
   level:

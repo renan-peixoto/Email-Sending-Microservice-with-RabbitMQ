@@ -62,6 +62,7 @@
 	</dependencies>
 
 	<build>
+		<finalName>spring-boot-mailpublisher-api</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
@@ -74,6 +75,13 @@
 						</exclude>
 					</excludes>
 				</configuration>
+				<executions>
+					<execution>
+						<configuration>
+							<mainClass>mail.sender.MailPublisherApplication</mainClass>
+						</configuration>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
