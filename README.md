@@ -50,7 +50,7 @@ Access RabbitMQ at http://localhost:15672 and log in with credentials guest and 
 
 Access the mail_publisher API with Postman or Insomnia at  http://localhost:8080/email/create-email and send a POST HTTP
 request to simulate email sending to the microservice responsible for sending emails.
-   Exemple:
+   Example:
    ```json
    {
     "ownerRef": "Test",
