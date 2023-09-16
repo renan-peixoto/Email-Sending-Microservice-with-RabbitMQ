@@ -27,28 +27,29 @@ Before getting started, make sure you have the following installed on your machi
 ## Installation and Setup
 1. Clone the repository to your machine:
 
-
-```bash
-git clone https://github.com/your-username/repository-name.git
-```
+   ```bash
+   git clone https://github.com/your-username/repository-name.git
+   ```
 2. Navigate to the project folder:
 
-```bash
-cd repository-name
-```
+   ```bash
+   cd repository-name
+   ```
 3. Start Docker Compose:
 
-```bash
-docker-compose up
-```
-4. Create an account on MailTrap to use it as a testing tool.
-5. Change the configurations in the applications.yml in the resources package, like username and password
+   ```bash
+   docker-compose up
+   ```
+4. Create an free account on [MailTrap](https://mailtrap.io/) to use it as a testing tool.
+5. Create an inbox and in the credentials copy the SMTP host, one of the ports, username and password.
+6. Change the configurations in the applications.yml in the resources package, like username and password.
 
 
 ## How to Use
 Access RabbitMQ at http://localhost:15672 and log in with credentials guest and guest.
 
-Access the producer microservice with Postman or Insomnia at  http://localhost:8080/email/create-email and send an POST HTTP request to simulate email sending to the microservice responsible for sending emails.
+Access the mail_publisher API with Postman or Insomnia at  http://localhost:8080/email/create-email and send a POST HTTP
+request to simulate email sending to the microservice responsible for sending emails.
    Exemple:
    ```json
    {
