@@ -33,12 +33,12 @@ Before getting started, make sure you have the following installed on your machi
 2. Navigate to the project folder:
 
    ```bash
-   cd repository-name
+   cd ./Email-Sending-Microservice-with-RabbitMQ
    ```
 3. Start Docker Compose:
 
    ```bash
-   docker-compose up
+   docker-compose up -d
    ```
 4. Create an free account on [MailTrap](https://mailtrap.io/) to use it as a testing tool.
 5. Create an inbox and in the credentials copy the SMTP host, one of the ports, username and password.
