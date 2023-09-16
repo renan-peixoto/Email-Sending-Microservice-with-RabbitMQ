@@ -43,16 +43,24 @@ docker-compose up
 ```
 4. Create an account on MailTrap to use it as a testing tool.
 
-5. Access RabbitMQ at http://localhost:15672 and log in with credentials guest and guest.
-
-6. Access the producer microservice at http://localhost:8080 and send an HTTP request to simulate email sending to the microservice responsible for sending emails.
-
-7. The email sending microservice will receive messages from the RabbitMQ queue and process them to send emails using the MailTrap email service.
 
 ## How to Use
-The producer microservice can be used to simulate email sending to the microservice responsible for sending emails. To do this, simply send an HTTP request to the URL http://localhost:8080/api/send with the email data in the request body.
+Access RabbitMQ at http://localhost:15672 and log in with credentials guest and guest.
+
+Access the producer microservice with Postman or Insomnia at  http://localhost:8080/email/create-email and send an POST HTTP request to simulate email sending to the microservice responsible for sending emails.
+   Exemple:
+   ```json
+   {
+    "ownerRef": "Test",
+    "emailFrom": "test@test.com",
+    "emailTo": "email_mensager@gmail.com",
+    "subject": "email test",
+    "text": "Success"
+    }
+   ```
 
 The email sending microservice will receive messages from the RabbitMQ queue and process them to send emails using the MailTrap email service.
+
 
 ## License
 This project is licensed under the MIT License. Please see the LICENSE file for more information.
