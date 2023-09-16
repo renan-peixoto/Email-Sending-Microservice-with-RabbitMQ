@@ -42,6 +42,7 @@ cd repository-name
 docker-compose up
 ```
 4. Create an account on MailTrap to use it as a testing tool.
+5. Change the configurations in the applications.yml in the resources package, like username and password
 
 
 ## How to Use
