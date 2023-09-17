@@ -1,7 +1,7 @@
-package email.sender.model;
+package email.sender.core.model;
 
-import email.sender.enums.StatusEmail;
-import email.sender.payload.EmailResponse;
+import email.sender.core.enums.StatusEmail;
+import email.sender.core.payload.EmailResponse;
 
 import lombok.*;
 import org.springframework.beans.BeanUtils;

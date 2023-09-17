@@ -1,11 +1,13 @@
-package email.sender.payload;
+package email.sender.core.payload;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import email.sender.enums.StatusEmail;
+import email.sender.core.enums.StatusEmail;
 
 
+import email.sender.core.model.Email;
 import lombok.Data;
+import org.springframework.beans.BeanUtils;
 
 
 import java.time.LocalDateTime;
@@ -33,5 +35,11 @@ public class EmailResponse {
 
     @JsonProperty("status_email")
     private StatusEmail statusEmail;
+
+    public Email toEntity(EmailResponse response) {
+        var email = new Email();
+        BeanUtils.copyProperties(response, email);
+        return email;
+    }
 
 }

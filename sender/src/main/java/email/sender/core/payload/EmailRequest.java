@@ -1,6 +1,6 @@
-package email.sender.payload;
+package email.sender.core.payload;
 
-import email.sender.model.Email;
+import email.sender.core.model.Email;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import org.springframework.beans.BeanUtils;
