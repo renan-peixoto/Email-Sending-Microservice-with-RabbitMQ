@@ -1,4 +1,4 @@
-package email.sender.enums;
+package email.sender.core.enums;
 
 public enum StatusEmail {
     SENT,

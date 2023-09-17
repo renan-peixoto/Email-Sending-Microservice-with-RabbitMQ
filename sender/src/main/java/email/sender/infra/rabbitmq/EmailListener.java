@@ -1,10 +1,11 @@
-package email.sender.rabbitmq;
+package email.sender.infra.rabbitmq;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import email.sender.enums.StatusEmail;
-import email.sender.payload.EmailRequest;
-import email.sender.repository.EmailsRepository;
+import email.sender.adapters.Listener;
+import email.sender.adapters.repository.EmailDAO;
+import email.sender.core.enums.StatusEmail;
+import email.sender.core.payload.EmailRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
@@ -16,13 +17,12 @@ import java.time.LocalDateTime;
 @Component
 @RequiredArgsConstructor
 @Slf4j
-public class EmailListener {
+public class EmailListener implements Listener {
 
-    private final EmailsRepository emailsRepository;
+    private final EmailDAO emailDAO;
     private final ObjectMapper objectMapper;
 
-
-
+    @Override
     @RabbitListener(queues = "${app-config.rabbit.queue.mail}")
     public void receiveEmail(@Payload EmailRequest request) {
         try {
@@ -30,7 +30,7 @@ public class EmailListener {
             email.setId(email.getId());
             email.setStatusEmail( StatusEmail.SENT );
             email.setSendDateTime( LocalDateTime.now() );
-            emailsRepository.save(email);
+            emailDAO.saveEmail(email);
             log.info( "Email: {}", objectMapper.writeValueAsString( request ) );
         } catch (Exception ex) {
             log.error( "Was not possible to receive the email" );

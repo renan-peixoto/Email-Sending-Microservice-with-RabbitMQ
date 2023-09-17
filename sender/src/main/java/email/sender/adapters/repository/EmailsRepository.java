@@ -1,6 +1,6 @@
-package email.sender.repository;
+package email.sender.adapters.repository;
 
-import email.sender.model.Email;
+import email.sender.core.model.Email;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 

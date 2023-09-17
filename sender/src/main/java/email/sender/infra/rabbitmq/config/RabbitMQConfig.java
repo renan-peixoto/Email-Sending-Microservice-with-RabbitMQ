@@ -1,4 +1,4 @@
-package email.sender.config;
+package email.sender.infra.rabbitmq.config;
 
 
 import org.springframework.amqp.core.Binding;

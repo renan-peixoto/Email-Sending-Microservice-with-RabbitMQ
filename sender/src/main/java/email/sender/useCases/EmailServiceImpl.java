@@ -1,45 +1,44 @@
-package email.sender.service;
+package email.sender.useCases;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import email.sender.enums.StatusEmail;
-import email.sender.model.Email;
-import email.sender.repository.EmailsRepository;
+import email.sender.adapters.MessageFormat;
+import email.sender.adapters.SendEmail;
+import email.sender.adapters.repository.EmailDAO;
+import email.sender.core.EmailService;
+import email.sender.core.enums.StatusEmail;
+import email.sender.core.model.Email;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.mail.SimpleMailMessage;
-import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
 @Slf4j
-public class EmailService {
+public class EmailServiceImpl implements EmailService {
     
-    private final EmailsRepository emailsRepository;
-    private final JavaMailSender javaMailSender;
+    private final EmailDAO emailRepositoryImpl;
     private final ObjectMapper objectMapper;
+    private final MessageFormat messageFormat;
+    private final SendEmail sendEmail;
 
 
+    @Override
     @Scheduled(fixedDelay = 10000)
     public void sendEmail() {
 
 
         try {
-            var emails = emailsRepository.findAll ();
+            var emails = emailRepositoryImpl.findAllEmails ();
             if (!emails.isEmpty()) {
                 for (Email email: emails) {
-
-                    var message = new SimpleMailMessage();
-                    message.setFrom( email.getEmailFrom() );
-                    message.setTo( email.getEmailTo() );
-                    message.setSubject( email.getSubject() );
-                    message.setText( email.getText() );
+                    SimpleMailMessage message = messageFormat.formatMessage(email);
                     if (email.getStatusEmail() == StatusEmail.SENT) {
-                        javaMailSender.send( message );
+                        sendEmail.send( message );
                         log.info("Sending email to: {}", objectMapper.writeValueAsString( message.getTo() ));
                         email.setStatusEmail( StatusEmail.DELETED );
-                        emailsRepository.save( email );
+                        emailRepositoryImpl.saveEmail( email );
                     }
                 }
             }
