@@ -1,0 +1,70 @@
+<div class="card flex flex-column justify-content-center">
+  <p-message *ngIf="successMsg" severity="success" [text]="successMsg">
+  </p-message>
+  <p-message *ngIf="errorMsg" severity="error" [text]="errorMsg"></p-message>
+  <div class="field flex flex-column">
+    <label for="email-ref">Name</label>
+    <input
+      id="email-ref"
+      type="text"
+      placeholder="Name"
+      pInputText
+      class="w-full"
+      [(ngModel)]="email.ownerRef"
+    />
+  </div>
+
+  <div class="field flex flex-column">
+    <label for="email-ref">From</label>
+    <input
+      id="email-to"
+      type="email"
+      placeholder="email@email.com"
+      pInputText
+      class="w-full"
+      [(ngModel)]="email.emailFrom"
+    />
+  </div>
+
+  <div class="field flex flex-column">
+    <label for="email-from">To</label>
+    <input
+      id="email-from"
+      type="email"
+      placeholder="email@email.com"
+      pInputText
+      class="w-full"
+      [(ngModel)]="email.emailTo"
+    />
+  </div>
+  <div class="field flex flex-column">
+    <label for="email-subject">Subject</label>
+    <input
+      id="email-subject"
+      type="text"
+      placeholder="Subject"
+      pInputText
+      class="w-full"
+      [(ngModel)]="email.subject"
+    />
+  </div>
+  <div class="field flex flex-column">
+    <label for="email-text">Text</label>
+    <textarea
+      id="email-text"
+      rows="5"
+      cols="30"
+      pInputTextarea
+      [autoResize]="true"
+      [(ngModel)]="email.text"
+    ></textarea>
+  </div>
+
+  <button
+    pButton
+    pRipple
+    label="Send"
+    class="p-button-success"
+    (click)="sendEmail()"
+  ></button>
+</div>

@@ -15,7 +15,7 @@ services:
       - 28017:28017
     volumes:
       - emailapi:/var/lib/mongodb
-      
+
   email-db:
     image: postgres
     container_name: publisher-db
@@ -29,8 +29,6 @@ services:
       - 5432:5432
     volumes:
       - emailapi:/var/lib/postgres
- 
-  
 
   rabbitmq:
     image: rabbitmq:3-management
@@ -45,10 +43,9 @@ services:
       - RABBITMQ_DEFAULT_USER=guest
       - RABBITMQ_DEFAULT_PASS=guest
 
-
   email-sender:
-    build: './sender'
     container_name: sender-api
+    image: repeixoto/sender-api
     depends_on:
       - rabbitmq
       - mongo-db
@@ -66,7 +63,7 @@ services:
       - 8081:8081
 
   publisher:
-    build: './mail_publisher'
+    build: 'backend/mail_publisher'
     container_name: publisher
     depends_on:
       - email-db
@@ -80,7 +77,7 @@ services:
       - DB_USER=admin
       - DB_PASSWORD=123456
       - DB_PORT=5432
-      
+
       - RABBIT_MQ_HOST=rabbitmq
       - RABBIT_MQ_PORT=5672
       - RABBIT_MQ_USER=guest
@@ -88,15 +85,19 @@ services:
     ports:
       - 8080:8080
 
+  frontend:
+    build: 'frontend/Email-sending'
+    container_name: frontend-Angular
+    networks:
+      - mail-sender
+    ports:
+      - 3000:80
+
 networks:
   mail-sender:
     driver: bridge
 
 volumes:
   emailapi:
-      
 
 
-
-    
-    
