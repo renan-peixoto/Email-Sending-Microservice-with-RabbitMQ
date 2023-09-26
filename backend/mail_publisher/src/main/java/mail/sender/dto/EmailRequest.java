@@ -2,6 +2,7 @@ package mail.sender.dto;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
+import mail.sender.enuns.EmailStrategy;
 import mail.sender.enuns.StatusEmail;
 
 @Data
@@ -26,4 +27,6 @@ public class EmailRequest {
   private String text;
 
   private StatusEmail statusEmail;
+
+  private EmailStrategy strategy;
 }

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { EmailRequest } from 'src/app/app/models/EmailRequest';
+
 import { EmailSendingService } from 'src/app/services/email-sending.service';
 
 @Component({
@@ -8,12 +9,23 @@ import { EmailSendingService } from 'src/app/services/email-sending.service';
   styleUrls: ['./send-email-form.component.scss'],
 })
 export class SendEmailFormComponent {
-  email: EmailRequest = {};
+  email: EmailRequest = {
+    emailFrom: '',
+    ownerRef: '',
+    emailTo: '',
+    subject: '',
+    text: '',
+    strategy: ''
+  };
+
+
+
 
   errorMsg: string = '';
   successMsg: string = '';
 
   constructor(private emailService: EmailSendingService) {}
+
 
   sendEmail() {
     this.errorMsg = '';
@@ -25,6 +37,8 @@ export class SendEmailFormComponent {
         if (response.statusEmail === 'SENT') {
           this.successMsg = 'Email sent successfully';
         }
+
+
       },
       error: (err) => {
         if (err.statusEmail !== 'SENT') {

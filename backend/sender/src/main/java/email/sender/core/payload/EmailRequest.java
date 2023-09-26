@@ -1,5 +1,6 @@
 package email.sender.core.payload;
 
+import email.sender.core.enums.EmailStrategy;
 import email.sender.core.model.Email;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
@@ -18,6 +19,8 @@ public class EmailRequest {
     private String subject;
     @NotNull
     private String text;
+@NotNull
+    private EmailStrategy strategy;
 
     public Email toEntity(EmailRequest request) {
         var email = new Email();
