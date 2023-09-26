@@ -13,6 +13,7 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
 import { HttpClientModule } from '@angular/common/http';
 import { MessagesModule } from 'primeng/messages';
 import { MessageModule } from 'primeng/message';
+import { DropdownModule } from 'primeng/dropdown';
 
 @NgModule({
   declarations: [AppComponent, SendEmailComponent, SendEmailFormComponent],
@@ -26,6 +27,7 @@ import { MessageModule } from 'primeng/message';
     HttpClientModule,
     MessagesModule,
     MessageModule,
+    DropdownModule
   ],
   providers: [],
   bootstrap: [AppComponent],

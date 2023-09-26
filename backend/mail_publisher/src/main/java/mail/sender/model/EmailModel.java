@@ -12,6 +12,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import mail.sender.dto.EmailRequest;
+import mail.sender.enuns.EmailStrategy;
 import mail.sender.enuns.StatusEmail;
 import org.springframework.beans.BeanUtils;
 
@@ -36,6 +37,8 @@ public class EmailModel {
   private LocalDateTime sendDateTime;
 
   private StatusEmail StatusEmail;
+
+  private EmailStrategy strategy;
 
   @PrePersist
   public void prePersist() {

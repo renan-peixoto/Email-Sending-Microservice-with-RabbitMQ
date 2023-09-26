@@ -7,6 +7,7 @@ import java.util.UUID;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import mail.sender.enuns.EmailStrategy;
 import mail.sender.enuns.StatusEmail;
 import mail.sender.model.EmailModel;
 import org.springframework.beans.BeanUtils;
@@ -36,6 +37,8 @@ public class EmailResponse {
   private LocalDateTime sendDateTime;
 
   private StatusEmail statusEmail;
+
+  private EmailStrategy strategy;
 
   public static EmailResponse of(EmailModel emailModel) {
     var response = new EmailResponse();

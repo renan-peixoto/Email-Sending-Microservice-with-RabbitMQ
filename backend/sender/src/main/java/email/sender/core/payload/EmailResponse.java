@@ -2,6 +2,7 @@ package email.sender.core.payload;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import email.sender.core.enums.EmailStrategy;
 import email.sender.core.enums.StatusEmail;
 
 
@@ -35,6 +36,8 @@ public class EmailResponse {
 
     @JsonProperty("status_email")
     private StatusEmail statusEmail;
+
+    private EmailStrategy strategy;
 
     public Email toEntity(EmailResponse response) {
         var email = new Email();

@@ -60,6 +60,15 @@
     ></textarea>
   </div>
 
+  <div class="field flex flex-column justify-content-center">
+    <label for="strategy">Strategy</label>
+
+    <select id="strategy" [(ngModel)]="email.strategy">
+      <option selected value="MAIL_TRAP" >MAILTRAP</option>
+    </select>
+
+</div>
+
   <button
     pButton
     pRipple

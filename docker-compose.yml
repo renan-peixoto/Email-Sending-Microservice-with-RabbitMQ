@@ -43,24 +43,23 @@ services:
       - RABBITMQ_DEFAULT_USER=guest
       - RABBITMQ_DEFAULT_PASS=guest
 
-  email-sender:
-    container_name: sender-api
-    image: repeixoto/sender-api
-    depends_on:
-      - rabbitmq
-      - mongo-db
-    networks:
-      - mail-sender
-    environment:
-      - PORT=8081
-      - MONGO_DB_URL=mongodb://admin:123456@mongo-db/email-db?authSource=admin
-      - RABBIT_MQ_HOST=rabbitmq
-      - RABBIT_MQ_PORT=5672
-      - RABBIT_MQ_USER=guest
-      - RABBIT_MQ_PASSWORD=guest
-      # - RABBIT_MQ_URL=amqp://guest:guest@rabbitmq:5672/
-    ports:
-      - 8081:8081
+  # email-sender:
+  #   container_name: sender-api
+  #   image: repeixoto/sender-api
+  #   depends_on:
+  #     - rabbitmq
+  #     - mongo-db
+  #   networks:
+  #     - mail-sender
+  #   environment:
+  #     - PORT=8081
+  #     - MONGO_DB_URL=mongodb://admin:123456@mongo-db/email-db?authSource=admin
+  #     - RABBIT_MQ_HOST=rabbitmq
+  #     - RABBIT_MQ_PORT=5672
+  #     - RABBIT_MQ_USER=guest
+  #     - RABBIT_MQ_PASSWORD=guest
+  #   ports:
+  #     - 8081:8081
 
   publisher:
     build: 'backend/mail_publisher'

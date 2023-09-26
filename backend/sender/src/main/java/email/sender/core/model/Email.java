@@ -1,5 +1,6 @@
 package email.sender.core.model;
 
+import email.sender.core.enums.EmailStrategy;
 import email.sender.core.enums.StatusEmail;
 import email.sender.core.payload.EmailResponse;
 
@@ -34,6 +35,8 @@ public class Email {
 
 
     private StatusEmail statusEmail;
+
+    private EmailStrategy strategy;
 
 
     public EmailResponse toResponse(Email email) {

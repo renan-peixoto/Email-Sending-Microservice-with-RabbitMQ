@@ -35,34 +35,26 @@ Before getting started, make sure you have the following installed on your machi
    ```bash
    cd ./Email-Sending-Microservice-with-RabbitMQ
    ```
-3. Start Docker Compose:
 
+4. Create an free account on [MailTrap](https://mailtrap.io/) to use it as a testing tool.
+5. Create an inbox and in the credentials copy the SMTP host, one of the ports, username and password.
+
+      ![credentials.png](assets%2Fcredentials.png)
+
+6. Change the sender-api configurations in the applications.yml in the resources package, like username and password.
+7. Start Docker Compose:
    ```bash
    docker-compose up -d
    ```
-4. Create an free account on [MailTrap](https://mailtrap.io/) to use it as a testing tool.
-5. Create an inbox and in the credentials copy the SMTP host, one of the ports, username and password.
-6. Change the configurations in the applications.yml in the resources package, like username and password.
+8. Open and run the sender-api
 
 
 ## How to Use
-Access RabbitMQ at http://localhost:15672 and log in with credentials guest and guest.
 
-Access the mail_publisher API with Postman or Insomnia at  http://localhost:8080/email/create-email and send a POST HTTP
-request to simulate email sending to the microservice responsible for sending emails.
-   Example:
-   ```json
-   {
-    "ownerRef": "Test",
-    "emailFrom": "test@test.com",
-    "emailTo": "email_mensager@gmail.com",
-    "subject": "email test",
-    "text": "Success"
-    }
-   ```
+Access the frontend aplication with the url: http://localhost:3000 and enter the fields and select the shipping strategy and send.
 
-The email sending microservice will receive messages from the RabbitMQ queue and process them to send emails using the MailTrap email service.
+![frontend-emailSender.png](assets%2Ffrontend-emailSender.png)
+
+The email sending microservice will receive messages from the RabbitMQ and process them to send emails using the MailTrap email service.
 
 
-## License
-This project is licensed under the MIT License. Please see the LICENSE file for more information.
