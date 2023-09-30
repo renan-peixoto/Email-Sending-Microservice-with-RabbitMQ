@@ -2,21 +2,33 @@ package email.sender.useCases;
 
 import email.sender.core.interfaces.SendEmailStrategy;
 import jakarta.validation.constraints.NotNull;
-import org.springframework.stereotype.Service;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
 
-@Service
+
+@Component
 public class SendEmailService {
-    private SendEmailStrategy currentStrategy;
+    private SendEmailStrategy mailTrapStrategy;
+    private SendEmailStrategy gmailStrategy;
 
-    public SendEmailService(SendEmailStrategy currentStrategy) {
-        this.currentStrategy = currentStrategy;
+    public SendEmailService(
+            @Qualifier("mailTrap") SendEmailStrategy mailTrapStrategy,
+            @Qualifier("gmail") SendEmailStrategy gmailStrategy
+    ) {
+        this.mailTrapStrategy = mailTrapStrategy;
+        this.gmailStrategy = gmailStrategy;
     }
     @NotNull
     public void setStrategy(SendEmailStrategy newStrategy) {
-        this.currentStrategy = newStrategy;
+        this.mailTrapStrategy = newStrategy;
+        this.gmailStrategy = newStrategy;
     }
 
-    public void sendEmail() {
-        currentStrategy.sendEmail( );
+    public void sendMailTrap() {
+        mailTrapStrategy.sendEmail( );
     }
+    public void sendGmail() {
+        gmailStrategy.sendEmail( );
+    }
+
 }
