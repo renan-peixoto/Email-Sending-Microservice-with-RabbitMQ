@@ -9,14 +9,12 @@ import email.sender.core.interfaces.SendEmailStrategy;
 import email.sender.core.enums.StatusEmail;
 import email.sender.core.model.Email;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.context.annotation.Primary;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Service;
 
 
 @Slf4j
-@Service
-@Primary
+@Service("mailTrap")
 public class MailTrapStrategy implements SendEmailStrategy {
 
     private  final EmailDAO emailRepositoryImpl;

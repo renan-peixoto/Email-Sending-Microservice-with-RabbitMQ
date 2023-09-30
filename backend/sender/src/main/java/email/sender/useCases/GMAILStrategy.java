@@ -1,13 +1,12 @@
 package email.sender.useCases;
 
 import email.sender.core.interfaces.SendEmailStrategy;
-import email.sender.core.enums.EmailStrategy;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.context.annotation.Primary;
+
 import org.springframework.stereotype.Service;
 
-@Service
+@Service("gmail")
 @NoArgsConstructor
 @Slf4j
 public class GMAILStrategy implements SendEmailStrategy {
