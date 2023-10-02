@@ -1,5 +1,6 @@
 # Email Sending Microservice with RabbitMQ 
-This project proposes a solution to the problem of relying on a single email service in a microservices-based architecture. The solution involves creating a new microservice responsible for receiving messages from a RabbitMQ queue and handling email sending using an email service.
+This project proposes a solution so that all applications that need to send emails do not need to have such a service within the application itself. The solution would be for the applications that wish to send emails (publishers) to send the email to an exchange, and from there, the microservice responsible for sending emails would listen to the queue and send the email to the recipient. This way, several other producing applications would not need to have this service within their code; they would only need to send the email to the exchange.
+Up to this point, the application has only been using a test email sending service like MailTrap. However, with the implementation of the strategy pattern, it is possible to implement another real email sending service in the future.
 
 ## Technologies Used
 - Spring Boot 3
